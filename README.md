@@ -1,3 +1,3 @@
 # tictactoe
-extremely simple example of a game tic tac toe without function, classes.
-HAVE FUN ;p
+C++ extremely simple example of a game tic tac toe without function, classes.
+HAVE FUN 
