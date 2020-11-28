@@ -1,0 +1,163 @@
+//free to use 
+//example of easy game to write 
+//have fun with your friend
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  
+    const int tic =3;
+    char tactoe [tic][tic];
+     for(int i=0;i<tic;i++)
+    {
+       for(int j=0;j<tic;j++)
+        {
+            tactoe[i][j]='#';
+        } 
+        
+    }
+     for(int i=0;i<tic;i++)
+    {
+       for(int j=0;j<tic;j++)
+        {
+            cout<<tactoe[i][j]<<" ";
+        } 
+        cout<<endl;
+    }
+    int nim [tic][tic]={0};
+    int choise =0;
+    int count =0;
+    for(int k=0;k<tic*tic;k++)
+        {
+    cout<<"1 to "<<tic*tic<<endl;
+    tryit:
+    cin>>choise;
+    int octacha,tsile;
+    tsile = choise /tic;
+    octacha = (choise %tic)-1;
+    if( tactoe[tsile][octacha] !='#')
+    {   
+        cout<<"reserved";
+        goto tryit;
+    }
+    if( (count%2) == 0)
+    {
+        tactoe[tsile][octacha] ='X';
+        nim [tsile][octacha] = 10;
+    }
+    else
+    {
+        tactoe[tsile][octacha] ='O';
+        nim [tsile][octacha] = -10;
+    }
+    
+    for(int i=0;i<tic;i++)
+    {
+       for(int j=0;j<tic;j++)
+        {
+            cout<<tactoe[i][j]<<" ";
+        } 
+        cout<<endl;
+    }
+    count++;
+    
+    // check wining
+    if (1){
+    //paralel check
+    for(int i=0;i<tic;i++)
+    {
+        int sum = 0;
+       for(int j=0;j<tic;j++)
+        {
+          sum+=nim[i][j];
+        } 
+       if(sum ==(tic*10))
+           {
+            cout<<"X won\n";
+            goto final;
+           }
+           else  if(sum == -(tic*10))
+           {
+            cout<<"O won\n";
+              goto final;
+           }   
+      
+    }
+    // horisontal check
+    for(int i=0;i<tic;i++)
+    {
+        int sum = 0;
+       for(int j=0;j<tic;j++)
+        {
+          sum+=nim[j][i];
+        } 
+       if(sum ==(tic*10))
+           {
+            cout<<"X won\n";
+              goto final;
+           }
+      else  if(sum == -(tic*10))
+           {
+            cout<<"O won\n";
+              goto final;
+           }   
+    }
+    //diagonal check
+    int sum = 0;
+      for(int i=0;i<tic;i++)
+    {
+       for(int j=0;j<tic;j++)
+        {
+            if(i==j)
+            {
+             sum+=nim[i][j];
+            }
+        } 
+    }
+       if(sum ==(tic*10))
+           {
+            cout<<"X won\n";
+              goto final;
+           }
+           else  if(sum == -(tic*10))
+           {
+            cout<<"O won\n";
+              goto final;
+           }   
+      
+     //op diagonal check
+        sum = 0;
+      for(int i=0;i<tic;i++)
+    {
+       for(int j=0;j<tic;j++)
+        {
+            if (j==(tic-i)-1)//////
+            {
+             sum+=nim[i][j];
+            }
+        } 
+    }
+       if(sum ==(tic*10))
+           {
+            cout<<"X won\n";
+              goto final;
+           }
+           else  if(sum == -(tic*10))
+           {
+            cout<<"O won\n";
+              goto final;
+           }   
+    
+      }
+     
+        }
+        cout<<"DRAW";
+        final:
+    return 0;
+}
+
+
+
